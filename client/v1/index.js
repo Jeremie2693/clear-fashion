@@ -75,6 +75,12 @@ console.log(unique_brands_name.size);
 // 2. Create a variable and assign it the list of products by price from lowest to highest
 // 3. Log the variable
 
+function Sort_price(market){
+  return market.sort(function (product1,product2){ return(product1.price <= product2.price) })
+};
+
+let sortbyprice=Sort_price(marketplace);
+console.table(sortbyprice);
 
 
 
@@ -85,9 +91,22 @@ console.log(unique_brands_name.size);
 // 3. Log the variable
 
 
+function Sort_date(market){
+  return market.sort(function (date1,date2){ return(new Date(date1.date) < new Date(date2.date)) })
+};
+
+let sortbydate=Sort_date(marketplace);
+console.table(sortbydate);
+
+
+
+
+
 // 🎯 TODO: Filter a specific price range
 // 1. Filter the list of products between 50€ and 100€
 // 2. Log the list
+
+
 
 
 // 🎯 TODO: Average Basket
