@@ -105,6 +105,8 @@ console.table(sortbydate);
 // 🎯 TODO: Filter a specific price range
 // 1. Filter the list of products between 50€ and 100€
 // 2. Log the list
+const Filtrersortbyprice=sortbyprice.filter((product) => product.price > 50 && product.price < 100 );
+console.table(Filtrersortbyprice);
 
 
 
@@ -113,6 +115,7 @@ console.table(sortbydate);
 // 1. Determine the average basket of the marketplace
 // 2. Log the average
 
+console.table(sortbyprice);
 
 
 
