@@ -33,7 +33,7 @@ console.log(MY_FAVORITE_BRANDS[0]);
 // 2. Log the variable
 
 const cheapest_tshirt='https://www.loom.fr/products/le-t-shirt';
-console.log(cheapest_tshirt)
+console.log(cheapest_tshirt);
 
 
 /**
@@ -50,7 +50,7 @@ console.log(cheapest_tshirt)
 // 2. Log the variable
 
 const number_product=marketplace.length;
-console.log(number_product)
+console.log(number_product);
 
 
 // 🎯 TODO: Brands name
@@ -59,10 +59,24 @@ console.log(number_product)
 // 3. Log how many brands we have
 
 
+const brands_name= [];
+marketplace.forEach(function (product){
+    brands_name.push(product.brand)
+});
+const unique_brands_name= new Set(brands_name);
+console.log(unique_brands_name);
+console.log(unique_brands_name.size);
+
+
+
+
 // 🎯 TODO: Sort by price
 // 1. Create a function to sort the marketplace products by price
 // 2. Create a variable and assign it the list of products by price from lowest to highest
 // 3. Log the variable
+
+
+
 
 
 // 🎯 TODO: Sort by date
