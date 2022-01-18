@@ -364,7 +364,6 @@ console.log(product_uuid1)
 // 🎯 TODO: Delete a specific product
 // 1. Delete the product with the uuid `b56c6d88-749a-5b4c-b571-e5b5c6483131`
 // 2. Log the new list of product
-console.log(COTELE_PARIS);
 delete COTELE_PARIS[COTELE_PARIS.indexOf(product_uuid1)];
 console.log(COTELE_PARIS);
 
@@ -382,8 +381,14 @@ let jacket = blueJacket;
 
 jacket.favorite = true;
 
+console.log(blueJacket);
+console.log(jacket);
+
+
 // 1. Log `blueJacket` and `jacket` variables
 // 2. What do you notice?
+// when we duplicate a varriables we assign the same local space so the same reference, they are the same objects
+//if we change one (here jacket) we change also the other (blueJacket)
 
 blueJacket = {
   'link': 'https://coteleparis.com/collections/tous-les-produits-cotele/products/la-veste-bleu-roi',
@@ -392,8 +397,11 @@ blueJacket = {
 };
 
 // 3. Update `jacket` property with `favorite` to true WITHOUT changing blueJacket properties
+jacket=Object.create(blueJacket);
+jacket.favorite = true;
 
-
+console.log(blueJacket);
+console.log(jacket);
 
 
 
