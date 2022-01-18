@@ -33,7 +33,7 @@ console.log(MY_FAVORITE_BRANDS[0]);
 // 2. Log the variable
 
 const cheapest_tshirt='https://www.loom.fr/products/le-t-shirt';
-console.log(cheapest_tshirt);
+console.log(cheapest_tshirt)
 
 
 /**
@@ -50,7 +50,7 @@ console.log(cheapest_tshirt);
 // 2. Log the variable
 
 const number_product=marketplace.length;
-console.log(number_product);
+console.log(number_product)
 
 
 // 🎯 TODO: Brands name
@@ -64,8 +64,8 @@ marketplace.forEach(function (product){
     brands_name.push(product.brand)
 });
 const unique_brands_name= new Set(brands_name);
-console.log(unique_brands_name);
-console.log(unique_brands_name.size);
+console.log(unique_brands_name)
+console.log(unique_brands_name.size)
 
 
 
@@ -80,7 +80,7 @@ function Sort_price(market){
 };
 
 let sortbyprice=Sort_price(marketplace);
-console.table(sortbyprice);
+console.table(sortbyprice)
 
 
 
@@ -96,7 +96,7 @@ function Sort_date(market){
 };
 
 let sortbydate=Sort_date(marketplace);
-console.table(sortbydate);
+console.table(sortbydate)
 
 
 
@@ -106,7 +106,7 @@ console.table(sortbydate);
 // 1. Filter the list of products between 50€ and 100€
 // 2. Log the list
 let Filtrersortbyprice=marketplace.filter((product) => product.price > 50 && product.price < 100 );
-console.table(Filtrersortbyprice);
+console.table(Filtrersortbyprice)
 
 
 
@@ -115,8 +115,18 @@ console.table(Filtrersortbyprice);
 // 1. Determine the average basket of the marketplace
 // 2. Log the average
 
-console.table(sortbyprice);
+function Avg(product) {
+  var i = 0, summ = 0, product_len = product.length;
+  while (i < product_len) {
+      summ = summ + product[i++].price;
+}
+  return summ / product_len;
+}
+var basket_list = marketplace.filter((product) => (product.name).indexOf("basket")!=-1 );
+console.table(basket_list)
 
+var average_price_basket = Avg(basket_list);
+console.log(average_price_basket)
 
 
 
