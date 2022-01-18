@@ -154,9 +154,31 @@ console.log(average_price_basket)
 // 3. Log the number of products by brands
 
 
+const Array_unique_brands_name=Array.from(unique_brands_name);
+var brands= [];
+
+for (let i = 0; i < Array_unique_brands_name.length; i++){
+
+    var brands_list = marketplace.filter((product) => product.brand=Array_unique_brands_name[i]);
+
+    brands.push({
+    key :  Array_unique_brands_name[i],
+    value : brands_list})
+}
+
+brands=new Set(brands)
+console.table(brands)
+console.log(brands)
+
+
+
+
+
 // 🎯 TODO: Sort by price for each brand
 // 1. For each brand, sort the products by price, from highest to lowest
 // 2. Log the sort
+
+
 
 
 // 🎯 TODO: Sort by date for each brand
