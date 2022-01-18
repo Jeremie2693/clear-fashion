@@ -331,6 +331,19 @@ const COTELE_PARIS = [
 // 🎯 TODO: New released products
 // // 1. Log if we have new products only (true or false)
 // // A new product is a product `released` less than 2 weeks.
+var new_product=[];
+for (let i = 0; i < COTELE_PARIS.length; i++){
+  var currentTime = new Date()
+  currentTime.setDate(currentTime.getDate()-14);
+  if (new Date(COTELE_PARIS[i].released)<=new Date(currentTime.setDate(currentTime.getDate()-14))){
+    console.log(COTELE_PARIS[i])
+    new_product.push(COTELE_PARIS[i])
+  }
+
+}
+console.table(new_product)
+
+
 
 
 // 🎯 TODO: Reasonable price
@@ -338,14 +351,21 @@ const COTELE_PARIS = [
 // // A reasonable price if all the products are less than 100€
 
 
+
+
 // 🎯 TODO: Find a specific product
 // 1. Find the product with the uuid `b56c6d88-749a-5b4c-b571-e5b5c6483131`
 // 2. Log the product
+var cot=COTELE_PARIS;
 
+product_uuid1=cot.filter((product) => (product.uuid).indexOf("b56c6d88-749a-5b4c-b571-e5b5c6483131")!=-1 );
+console.log(product_uuid1)
 
 // 🎯 TODO: Delete a specific product
 // 1. Delete the product with the uuid `b56c6d88-749a-5b4c-b571-e5b5c6483131`
 // 2. Log the new list of product
+
+
 
 // 🎯 TODO: Save the favorite product
 let blueJacket = {
