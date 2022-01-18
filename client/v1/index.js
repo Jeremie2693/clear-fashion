@@ -243,7 +243,7 @@ console.log(brands)
 function p90(market){
   let sortpricemarket=market.sort(function (product1,product2){ return(product1.price <= product2.price)});
   let len_brands=sortpricemarket.length;
-  return sortpricemarket[0.9*len_brands].price
+  return sortpricemarket[parseInt(0.9*len_brands)].price
 };
 
 var market=marketplace;
@@ -252,7 +252,7 @@ var keys = Object.keys(brands);
 var key;
 for (let i = 0; i < keys.length; i++){
   key=keys[i];
-  brands[key]=Sort_price_DESC(brands[key]);
+  brands[key]=p90(brands[key]);
 }
 
 console.log(brands)
