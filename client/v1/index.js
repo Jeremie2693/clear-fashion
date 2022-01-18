@@ -155,20 +155,30 @@ console.log(average_price_basket)
 
 
 const Array_unique_brands_name=Array.from(unique_brands_name);
-var brands= [];
+var brands= {};
 
 for (let i = 0; i < Array_unique_brands_name.length; i++){
 
     var brands_list = marketplace.filter((product) => product.brand=Array_unique_brands_name[i]);
 
-    brands.push({
-    key :  Array_unique_brands_name[i],
-    value : brands_list})
+    brands[Array_unique_brands_name[i]]=brands_list;
+
 }
 
-brands=new Set(brands)
 console.table(brands)
 console.log(brands)
+
+
+
+//const Array_brands=Array.from(brands);
+var keys = Object.keys(brands);
+var key;
+for (let i = 0; i < keys.length; i++){
+  key=keys[i];
+  console.log(key + " = " + brands[key].length);
+
+}
+
 
 
 
@@ -178,6 +188,10 @@ console.log(brands)
 // 1. For each brand, sort the products by price, from highest to lowest
 // 2. Log the sort
 
+
+
+//let sort_brands_prices=Sort_date(marketplace);
+//console.table(sortbydate)
 
 
 
