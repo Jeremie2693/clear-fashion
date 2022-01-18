@@ -76,12 +76,11 @@ console.log(unique_brands_name.size)
 // 3. Log the variable
 
 function Sort_price(market){
-  return market.sort(function (product1,product2){ return(product1.price <= product2.price) })
+  return market.sort(function (product1,product2){ return(product1.price >= product2.price) })
 };
 
 let sortbyprice=Sort_price(marketplace);
 console.table(sortbyprice)
-
 
 
 
@@ -105,8 +104,10 @@ console.table(sortbydate)
 // 🎯 TODO: Filter a specific price range
 // 1. Filter the list of products between 50€ and 100€
 // 2. Log the list
-let Filtrersortbyprice=marketplace.filter((product) => product.price > 50 && product.price < 100 );
-console.table(Filtrersortbyprice)
+var market=marketplace;
+
+let FiltrerPrice50100=market.filter((product) => product.price > 50 && product.price < 100 );
+console.table(FiltrerPrice50100)
 
 
 
@@ -122,11 +123,14 @@ function Avg(product) {
 }
   return summ / product_len;
 }
-var basket_list = marketplace.filter((product) => (product.name).indexOf("basket")!=-1 );
+var market=marketplace;
+
+var basket_list = market.filter((product) => (product.name).indexOf("basket")!=-1 );
 console.table(basket_list)
 
 var average_price_basket = Avg(basket_list);
 console.log(average_price_basket)
+
 
 
 
@@ -154,12 +158,12 @@ console.log(average_price_basket)
 // 3. Log the number of products by brands
 
 
-const Array_unique_brands_name=Array.from(unique_brands_name);
+var Array_unique_brands_name=Array.from(unique_brands_name);
 var brands= {};
 
 for (let i = 0; i < Array_unique_brands_name.length; i++){
-
-    var brands_list = marketplace.filter((product) => product.brand=Array_unique_brands_name[i]);
+    var market=marketplace;
+    var brands_list = market.filter((product) => product.brand.indexOf(Array_unique_brands_name[i])!=-1 );
 
     brands[Array_unique_brands_name[i]]=brands_list;
 
@@ -187,11 +191,19 @@ for (let i = 0; i < keys.length; i++){
 // 🎯 TODO: Sort by price for each brand
 // 1. For each brand, sort the products by price, from highest to lowest
 // 2. Log the sort
+function Sort_price_DESC(market){
+  return market.sort(function (product1,product2){ return(product1.price <= product2.price) })
+};
+var market=marketplace;
 
+var keys = Object.keys(brands);
+var key;
+for (let i = 0; i < keys.length; i++){
+  key=keys[i];
+  brands[key]=Sort_price_DESC(brands[key]);
+}
 
-
-//let sort_brands_prices=Sort_date(marketplace);
-//console.table(sortbydate)
+console.log(brands)
 
 
 
@@ -199,6 +211,19 @@ for (let i = 0; i < keys.length; i++){
 // 1. For each brand, sort the products by date, from old to recent
 // 2. Log the sort
 
+function Sort_date_DESC(market){
+  return market.sort(function (date1,date2){ return(new Date(date1.date) > new Date(date2.date)) })
+};
+var market=marketplace;
+
+var keys = Object.keys(brands);
+var key;
+for (let i = 0; i < keys.length; i++){
+  key=keys[i];
+  brands[key]=Sort_date_DESC(brands[key]);
+}
+
+console.log(brands)
 
 
 
@@ -214,6 +239,23 @@ for (let i = 0; i < keys.length; i++){
 // 1. Compute the p90 price value of each brand
 // The p90 value (90th percentile) is the lower value expected to be exceeded in 90% of the products
 
+
+function p90(market){
+  let sortpricemarket=market.sort(function (product1,product2){ return(product1.price <= product2.price)});
+  let len_brands=sortpricemarket.length;
+  return sortpricemarket[0.9*len_brands].price
+};
+
+var market=marketplace;
+
+var keys = Object.keys(brands);
+var key;
+for (let i = 0; i < keys.length; i++){
+  key=keys[i];
+  brands[key]=Sort_price_DESC(brands[key]);
+}
+
+console.log(brands)
 
 
 
@@ -342,3 +384,4 @@ blueJacket = {
 // 🎯 TODO: Save in localStorage
 // 1. Save MY_FAVORITE_BRANDS in the localStorage
 // 2. log the localStorage
+
