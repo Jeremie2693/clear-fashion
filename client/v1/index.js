@@ -358,13 +358,15 @@ console.table(new_product)
 // 2. Log the product
 var cot=COTELE_PARIS;
 
-product_uuid1=cot.filter((product) => (product.uuid).indexOf("b56c6d88-749a-5b4c-b571-e5b5c6483131")!=-1 );
+var product_uuid1=cot.find((product) => (product.uuid)=="b56c6d88-749a-5b4c-b571-e5b5c6483131");
 console.log(product_uuid1)
 
 // 🎯 TODO: Delete a specific product
 // 1. Delete the product with the uuid `b56c6d88-749a-5b4c-b571-e5b5c6483131`
 // 2. Log the new list of product
-
+console.log(COTELE_PARIS);
+delete COTELE_PARIS[COTELE_PARIS.indexOf(product_uuid1)];
+console.log(COTELE_PARIS);
 
 
 // 🎯 TODO: Save the favorite product
