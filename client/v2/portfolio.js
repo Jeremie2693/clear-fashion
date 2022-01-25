@@ -9,6 +9,7 @@ let currentPagination = {};
 const selectShow = document.querySelector('#show-select');
 const selectPage = document.querySelector('#page-select');
 
+const selectBrands= document.querySelector('#brand-select');
 
 const sectionProducts = document.querySelector('#products');
 const spanNbProducts = document.querySelector('#nbProducts');
@@ -35,7 +36,7 @@ const fetchProducts = async (page = 1, size = 12) => {
       `https://clear-fashion-api.vercel.app?page=${page}&size=${size}`
     );
     const body = await response.json();
-
+    
     if (body.success !== true) {
       console.error(body);
       return {currentProducts, currentPagination};
@@ -98,6 +99,39 @@ const renderIndicators = pagination => {
   spanNbProducts.innerHTML = count;
 };
 
+
+function Market_Brands(marketplace){
+
+  const brands_name= [];
+  marketplace.forEach(function (product){
+      brands_name.push(product.brand)
+  });
+  const unique_brands_name= new Set(brands_name);
+  return unique_brands_name
+}
+
+function SortByBrands(unique_brands_name){
+  var Array_unique_brands_name=Array.from(unique_brands_name);
+  var brands= {};
+  for (let i = 0; i < Array_unique_brands_name.length; i++){
+      var market=marketplace;
+      var brands_list = market.filter((product) => product.brand.indexOf(Array_unique_brands_name[i])!=-1 );
+      brands[Array_unique_brands_name[i]]=brands_list;}
+  return brands
+}
+
+function FilterBrand(products, brand){
+    var brands_product = products.filter((product) => product.brand==brand);
+    renderProducts(brands_product);
+    
+}
+
+
+
+
+
+
+
 const render = (products, pagination) => {
   renderProducts(products);
   renderPagination(pagination);
@@ -141,7 +175,23 @@ selectPage.addEventListener('change', event => {
   .then(() => render(currentProducts, currentPagination))
 });
 
+
+
 //Feature 2 - Filter by brands
+
+selectBrands.addEventListener('change', event => {
+  FilterBrand(currentProducts, event.target.value)
+});
+
+
+
+
+
+ 
+
+
+
+
 
 
 

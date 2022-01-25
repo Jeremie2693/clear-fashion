@@ -106,7 +106,7 @@ console.table(sortbydate)
 // 2. Log the list
 var market=marketplace;
 
-let FiltrerPrice50100=market.filter((product) => product.price > 50 && product.price < 100 );
+var FiltrerPrice50100=market.filter((product) => product.price > 50 && product.price < 100 );
 console.table(FiltrerPrice50100)
 
 
@@ -164,7 +164,6 @@ var brands= {};
 for (let i = 0; i < Array_unique_brands_name.length; i++){
     var market=marketplace;
     var brands_list = market.filter((product) => product.brand.indexOf(Array_unique_brands_name[i])!=-1 );
-
     brands[Array_unique_brands_name[i]]=brands_list;
 
 }
