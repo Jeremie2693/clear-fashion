@@ -160,6 +160,22 @@ function FilterRecentProduct(products){
 }
 
 
+// Filter by older products
+
+function FilterOldProduct(products){
+  var new_product=[];
+  for (let i = 0; i < products.length; i++){
+   var currentTime = new Date()
+    currentTime.setDate(currentTime.getDate()-14);
+    if (new Date(products[i].released)>=new Date(currentTime.setDate(currentTime.getDate()-14))){
+      console.log(products[i])
+      new_product.push(products[i])
+    }
+  }
+  renderProducts(new_product)
+}
+
+
 //Feature 4 - Filter by reasonable price
 
 function FilterReasonableprice(products)
