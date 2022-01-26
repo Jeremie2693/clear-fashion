@@ -106,9 +106,6 @@ console.table(sortbydate)
 // 2. Log the list
 var market=marketplace;
 
-var FiltrerPrice50100=market.filter((product) => product.price > 50 && product.price < 100 );
-console.table(FiltrerPrice50100)
-
 
 
 
@@ -331,11 +328,14 @@ const COTELE_PARIS = [
 // // 1. Log if we have new products only (true or false)
 // // A new product is a product `released` less than 2 weeks.
 var new_product=[];
+
+var currentTime = new Date();
+var twoweekago = new Date(currentTime.setDate(currentTime.getDate()-14));
+
 for (let i = 0; i < COTELE_PARIS.length; i++){
-  var currentTime = new Date()
-  currentTime.setDate(currentTime.getDate()-14);
-  if (new Date(COTELE_PARIS[i].released)<=new Date(currentTime.setDate(currentTime.getDate()-14))){
-    console.log(COTELE_PARIS[i])
+  //currentTime.setDate(currentTime.getDate()-14);
+  if (new Date(COTELE_PARIS[i].released)>=twoweekago){
+    //console.log(COTELE_PARIS[i])
     new_product.push(COTELE_PARIS[i])
   }
 
