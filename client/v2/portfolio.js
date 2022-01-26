@@ -11,8 +11,12 @@ const selectPage = document.querySelector('#page-select');
 
 const selectBrands= document.querySelector('#brand-select');
 
+const selectsort = document.querySelector('#sort-select');
+
 const sectionProducts = document.querySelector('#products');
 const spanNbProducts = document.querySelector('#nbProducts');
+
+
 
 /**
  * Set global value
@@ -122,24 +126,35 @@ const renderBrands = brands => {
   selectBrands.innerHTML = options;
 };
 
-function SortByBrands(currentProducts){
-  var Array_unique_brands_name=Market_Brands(currentProducts);
-  var brands= {};
+function SortByBrands(products,brand){
+  var Array_unique_brands_name=Market_Brands(products);
+  var brands_product= {};
   for (let i = 0; i < Array_unique_brands_name.length; i++){
       var market=marketplace;
       var brands_list = market.filter((product) => product.brand.indexOf(Array_unique_brands_name[i])!=-1 );
-      brands[Array_unique_brands_name[i]]=brands_list;}
-  return brands
+      brands_product[Array_unique_brands_name[i]]=brands_list;}
+  renderProducts(brands_product[brand]);
 }
 
 function FilterBrand(products, brand){
     var brands_product = products.filter((product) => product.brand==brand);
     renderProducts(brands_product);
-    
 }
 
 
 
+function FilterRecentProduct(products){
+  var new_product=[];
+  for (let i = 0; i < products.length; i++){
+   var currentTime = new Date()
+    currentTime.setDate(currentTime.getDate()-14);
+    if (new Date(products[i].released)<=new Date(currentTime.setDate(currentTime.getDate()-14))){
+      console.log(products[i])
+      new_product.push(products[i])
+    }
+  }
+  renderProducts(new_product)
+}
 
 
 
@@ -195,13 +210,32 @@ selectPage.addEventListener('change', event => {
 
 selectBrands.addEventListener('change', event => {
   FilterBrand(currentProducts, event.target.value)
+  //let brands_product=SortByBrands(products)
+  //SortByBrands(currentProducts,event.target.value)
+  //renderProducts(brands_product[event.target.value])
+  //renderProducts(brands_product);
+
 });
 
 
+//Feature 3 - Filter by recent products
 
 
+selectsort.addEventListener('change', event => {
+  let evenenment=event.target.value
+  switch (evenenment) {
+    case 'price-asc':
+      break;
+    case 'price-desc':
+      break;
+    case 'date-asc':
+      FilterRecentProduct(currentProducts)
+      break;
+    case 'date-desc':
+      break;
 
- 
+  }
+});
 
 
 
