@@ -99,9 +99,8 @@ const renderIndicators = pagination => {
   spanNbProducts.innerHTML = count;
 };
 
-
+// List of Brands
 function Market_Brands(marketplace){
-
   const brands_name= [];
   marketplace.forEach(function (product){
       brands_name.push(product.brand)
@@ -109,6 +108,21 @@ function Market_Brands(marketplace){
   const unique_brands_name= new Set(brands_name);
   return unique_brands_name
 }
+
+
+/**
+ * Render page selector
+ * @param  {Object} brands
+ */
+const renderBrands = brands => {
+  const {currentPage, pageCount} = pagination;
+  const options = Array.from(
+    {'length': brands.length},
+    (value, index) => `<option value="${brands[index]}">${brands[index]}</option>`
+  ).join('');
+
+  selectBrands.innerHTML = options;
+};
 
 function SortByBrands(unique_brands_name){
   var Array_unique_brands_name=Array.from(unique_brands_name);
