@@ -115,12 +115,10 @@ function Market_Brands(marketplace){
  * @param  {Object} brands
  */
 const renderBrands = brands => {
-  const {currentPage, pageCount} = pagination;
   const options = Array.from(
     {'length': brands.length},
     (value, index) => `<option value="${brands[index]}">${brands[index]}</option>`
   ).join('');
-
   selectBrands.innerHTML = options;
 };
 
