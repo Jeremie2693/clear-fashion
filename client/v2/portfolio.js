@@ -62,7 +62,7 @@ const renderProducts = products => {
       <div class="product" id=${product.uuid}>
         <span>${product.brand}</span>
         <a href="${product.link}">${product.name}</a>
-        <span>${product.price}</span>
+        <span>${product.price} € </span>
       </div>
     `;
     })
@@ -106,7 +106,7 @@ function Market_Brands(marketplace){
       brands_name.push(product.brand)
   });
   const unique_brands_name= new Set(brands_name);
-  return unique_brands_name
+  return Array.from(unique_brands_name)
 }
 
 
@@ -122,8 +122,8 @@ const renderBrands = brands => {
   selectBrands.innerHTML = options;
 };
 
-function SortByBrands(unique_brands_name){
-  var Array_unique_brands_name=Array.from(unique_brands_name);
+function SortByBrands(currentProducts){
+  var Array_unique_brands_name=Market_Brands(currentProducts);
   var brands= {};
   for (let i = 0; i < Array_unique_brands_name.length; i++){
       var market=marketplace;
@@ -148,6 +148,8 @@ const render = (products, pagination) => {
   renderProducts(products);
   renderPagination(pagination);
   renderIndicators(pagination);
+  renderBrands(Market_Brands(products))
+
 };
 
 /**
