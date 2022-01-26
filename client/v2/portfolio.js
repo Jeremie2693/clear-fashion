@@ -157,8 +157,6 @@ function FilterRecentProduct(products){
 }
 
 
-
-
 const render = (products, pagination) => {
   renderProducts(products);
   renderPagination(pagination);
@@ -219,12 +217,15 @@ selectBrands.addEventListener('change', event => {
 
 
 //Feature 3 - Filter by recent products
+//Feature 4 - Filter by reasonable price
+
 
 
 selectsort.addEventListener('change', event => {
   let evenenment=event.target.value
   switch (evenenment) {
     case 'price-asc':
+      //FilterReasonableprice(currentProducts)
       break;
     case 'price-desc':
       break;
