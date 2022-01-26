@@ -172,7 +172,7 @@ function FilterOldProduct(products){
   
   for (let i = 0; i < products.length; i++){
     if (new Date(products[i].released)<=twoweekago){
-      new_product.push(products[i])
+      old_product.push(products[i])
     }
   
   }
