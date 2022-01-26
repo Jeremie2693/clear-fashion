@@ -136,12 +136,15 @@ function SortByBrands(products,brand){
   renderProducts(brands_product[brand]);
 }
 
+//Feature 2 - Filter by brands
+
 function FilterBrand(products, brand){
     var brands_product = products.filter((product) => product.brand==brand);
     renderProducts(brands_product);
 }
 
 
+//Feature 3 - Filter by recent products
 
 function FilterRecentProduct(products){
   var new_product=[];
@@ -155,6 +158,15 @@ function FilterRecentProduct(products){
   }
   renderProducts(new_product)
 }
+
+//Feature 4 - Filter by reasonable price
+
+function FilterReasonableprice(products)
+{
+  var cheapest_product=products.filter((product) => product.price < 50);
+  renderProducts(cheapest_product)
+}
+
 
 
 const render = (products, pagination) => {
@@ -217,7 +229,6 @@ selectBrands.addEventListener('change', event => {
 
 
 //Feature 3 - Filter by recent products
-//Feature 4 - Filter by reasonable price
 
 
 
@@ -225,7 +236,7 @@ selectsort.addEventListener('change', event => {
   let evenenment=event.target.value
   switch (evenenment) {
     case 'price-asc':
-      //FilterReasonableprice(currentProducts)
+      FilterReasonableprice(currentProducts)
       break;
     case 'price-desc':
       break;
