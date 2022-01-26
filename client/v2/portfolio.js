@@ -159,11 +159,21 @@ function FilterRecentProduct(products){
   renderProducts(new_product)
 }
 
+
 //Feature 4 - Filter by reasonable price
 
 function FilterReasonableprice(products)
 {
   var cheapest_product=products.filter((product) => product.price < 50);
+  renderProducts(cheapest_product)
+}
+
+
+//- Filter by expensive price
+
+function FilterExpensiveprice(products)
+{
+  var cheapest_product=products.filter((product) => product.price > 200);
   renderProducts(cheapest_product)
 }
 
@@ -239,11 +249,13 @@ selectsort.addEventListener('change', event => {
       FilterReasonableprice(currentProducts)
       break;
     case 'price-desc':
+      FilterExpensiveprice(currentProducts)
       break;
     case 'date-asc':
       FilterRecentProduct(currentProducts)
       break;
     case 'date-desc':
+      FilterOldProduct(currentProducts)
       break;
 
   }
