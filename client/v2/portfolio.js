@@ -149,12 +149,12 @@ function FilterBrand(products, brand){
 function FilterRecentProduct(products){
   var new_product=[];
   
-  var currentTime = new Date();
-  var twoweekago = new Date(currentTime.setDate(currentTime.getDate()-14));
+  let currentTime = new Date();
+  let twoweekago = new Date(currentTime.setDate(currentTime.getDate()-14));
   
-  for (let i = 0; i < COTELE_PARIS.length; i++){
-    if (new Date(COTELE_PARIS[i].released)>=twoweekago){
-      new_product.push(COTELE_PARIS[i])
+  for (let i = 0; i < products.length; i++){
+    if (new Date(products[i].released)>=twoweekago){
+      new_product.push(products[i])
     }
   
   }
@@ -165,18 +165,18 @@ function FilterRecentProduct(products){
 // Filter by older products
 
 function FilterOldProduct(products){
-  var new_product=[];
+  var old_product=[];
   
-  var currentTime = new Date();
-  var twoweekago = new Date(currentTime.setDate(currentTime.getDate()-14));
+  let currentTime = new Date();
+  let twoweekago = new Date(currentTime.setDate(currentTime.getDate()-14));
   
-  for (let i = 0; i < COTELE_PARIS.length; i++){
-    if (new Date(COTELE_PARIS[i].released)<=twoweekago){
-      new_product.push(COTELE_PARIS[i])
+  for (let i = 0; i < products.length; i++){
+    if (new Date(products[i].released)<=twoweekago){
+      new_product.push(products[i])
     }
   
   }
-  renderProducts(new_product)
+  renderProducts(old_product)
 }
 
 
