@@ -9,12 +9,15 @@ let currentPagination = {};
 const selectShow = document.querySelector('#show-select');
 const selectPage = document.querySelector('#page-select');
 
-const selectBrands= document.querySelector('#brand-select');
 
+const selectPrice = document.querySelector('#filter-price');
+
+const selectBrands= document.querySelector('#brand-select');
 const selectsort = document.querySelector('#sort-select');
 
 const sectionProducts = document.querySelector('#products');
 const spanNbProducts = document.querySelector('#nbProducts');
+
 
 
 
@@ -282,9 +285,11 @@ selectBrands.addEventListener('change', event => {
 
 
 //Feature 3 - Filter by recent products
+selectReleased.addEventListener('click', event => {
+  FilterRecentProduct(currentProducts)
+});
 
 
-//Feature 4 - Filter by reasonable price
 
 
 //Feature 5 - Sort by price
@@ -310,9 +315,8 @@ selectsort.addEventListener('change', event => {
 
 
 
-      //FilterReasonableprice(currentProducts)
       //FilterExpensiveprice(currentProducts)
-      //FilterRecentProduct(currentProducts)
+      //
       //FilterOldProduct(currentProducts)
 
 
