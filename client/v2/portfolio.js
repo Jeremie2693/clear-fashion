@@ -107,7 +107,7 @@ const renderIndicators = (products,pagination) => {
   const {count} = pagination;
 
   spanNbProducts.innerHTML = count;
-  spanNbRecentProducts.innerHTML = FilterRecentProduct(products).length;
+  spanNbRecentProducts.innerHTML = NBFilterRecentProduct(products);
 
 
 };
@@ -167,9 +167,21 @@ function FilterRecentProduct(products){
     }
   
   }
-  renderProducts(brands_product);
+  renderProducts(new_product);
 }
-
+function NBFilterRecentProduct(products){
+  var new_product=[];
+  let currentTime = new Date();
+  let twoweekago = new Date(currentTime.setDate(currentTime.getDate()-14));
+  
+  for (let i = 0; i < products.length; i++){
+    if (new Date(products[i].released)>=twoweekago){
+      new_product.push(products[i])
+    }
+  
+  }
+  return(new_product.length);
+}
 
 // Filter by older products
 
