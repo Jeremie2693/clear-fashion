@@ -11,6 +11,7 @@ const selectPage = document.querySelector('#page-select');
 
 
 const selectPrice = document.querySelector('#filter-price');
+const selectReleased = document.querySelector('#filter-released');
 
 const selectBrands= document.querySelector('#brand-select');
 const selectsort = document.querySelector('#sort-select');
@@ -289,6 +290,10 @@ selectReleased.addEventListener('click', event => {
   FilterRecentProduct(currentProducts)
 });
 
+//Feature 4 - Filter by reasonable price
+selectPrice.addEventListener('click', event => {
+  FilterReasonableprice(currentProducts)
+});
 
 
 
