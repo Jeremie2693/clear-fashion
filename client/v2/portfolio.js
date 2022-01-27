@@ -190,13 +190,27 @@ function FilterReasonableprice(products)
 }
 
 
-//- Filter by expensive price
+//- Filter  by expensive price
 
 function FilterExpensiveprice(products)
 {
   var cheapest_product=products.filter((product) => product.price > 200);
   renderProducts(cheapest_product)
 }
+
+//Feature 5 - Sort by price
+
+//Desc
+function Sort_price_DESC(products){
+  renderProducts(products.sort(function (product1,product2){ return(product1.price <= product2.price) }))
+};
+
+//Asc
+function Sort_price_ASC(products){
+  renderProducts(products.sort(function (product1,product2){ return(product1.price >= product2.price) }))
+};
+
+
 
 
 
@@ -267,10 +281,12 @@ selectsort.addEventListener('change', event => {
   let evenenment=event.target.value
   switch (evenenment) {
     case 'price-asc':
-      FilterReasonableprice(currentProducts)
+      Sort_price_ASC(currentProducts)
+      //FilterReasonableprice(currentProducts)
       break;
     case 'price-desc':
-      FilterExpensiveprice(currentProducts)
+      Sort_price_DESC(currentProducts)
+      //FilterExpensiveprice(currentProducts)
       break;
     case 'date-asc':
       FilterRecentProduct(currentProducts)
