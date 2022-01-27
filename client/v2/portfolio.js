@@ -120,6 +120,7 @@ const renderIndicators = (products,pagination) => {
   spanP50.innerHTML=p(0.50,products);
   spanP90.innerHTML=p(0.90,products);
   spanP95.innerHTML=p(0.95,products);
+  //Feature 11 - Last released date indicator
 
   spanLastReleased.innerHTML=LastReleased(products);
 };
@@ -284,6 +285,9 @@ function LastReleased(products){
   let SortedReleasedProducts = products.sort(function (product1,product2){ return(product1.released <= product2.released)});
   return (SortedReleasedProducts[0].released);
 }
+
+
+//Render Page
 
 const render = (products, pagination) => {
   renderProducts(products);
