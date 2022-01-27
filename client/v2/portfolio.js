@@ -18,6 +18,8 @@ const selectsort = document.querySelector('#sort-select');
 
 const sectionProducts = document.querySelector('#products');
 const spanNbProducts = document.querySelector('#nbProducts');
+const spanNbRecentProducts = document.querySelector('#nbNewProducts');
+
 
 
 
@@ -101,10 +103,13 @@ const renderPagination = pagination => {
  * Render page selector
  * @param  {Object} pagination
  */
-const renderIndicators = pagination => {
+const renderIndicators = (products,pagination) => {
   const {count} = pagination;
 
   spanNbProducts.innerHTML = count;
+  spanNbRecentProducts.innerHTML = FilterRecentProduct(products).length;
+
+
 };
 
 // List of Brands
@@ -162,7 +167,7 @@ function FilterRecentProduct(products){
     }
   
   }
-  renderProducts(new_product)
+  return(new_product)
 }
 
 
@@ -229,7 +234,7 @@ function Sort_date_ASC(products){
 const render = (products, pagination) => {
   renderProducts(products);
   renderPagination(pagination);
-  renderIndicators(pagination);
+  renderIndicators(products,pagination);
   renderBrands(Market_Brands(products))
 
 };
@@ -295,6 +300,10 @@ selectPrice.addEventListener('click', event => {
   FilterReasonableprice(currentProducts)
 });
 
+//FilterExpensiveprice(currentProducts)
+//FilterOldProduct(currentProducts)
+
+
 
 
 //Feature 5 - Sort by price
@@ -318,11 +327,6 @@ selectsort.addEventListener('change', event => {
   }
 });
 
-
-
-      //FilterExpensiveprice(currentProducts)
-      //
-      //FilterOldProduct(currentProducts)
 
 
 
