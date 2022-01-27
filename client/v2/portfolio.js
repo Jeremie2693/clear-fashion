@@ -296,11 +296,11 @@ selectsort.addEventListener('change', event => {
       //FilterExpensiveprice(currentProducts)
       break;
     case 'date-asc':
-      Sort_date_ASC(products)
+      Sort_date_ASC(currentProducts)
       //FilterRecentProduct(currentProducts)
       break;
     case 'date-desc':
-      Sort_date_DESC(products)
+      Sort_date_DESC(currentProducts)
       //FilterOldProduct(currentProducts)
       break;
 
