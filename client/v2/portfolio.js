@@ -167,7 +167,7 @@ function FilterRecentProduct(products){
     }
   
   }
-  return(new_product)
+  renderProducts(brands_product);
 }
 
 
