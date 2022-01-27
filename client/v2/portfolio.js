@@ -213,11 +213,11 @@ function Sort_price_ASC(products){
 //Feature 6 - Sort by date
 //DESC the oldest to the newest
 function Sort_date_DESC(products){
-  return products.sort(function (date1,date2){ return(new Date(date1.date) > new Date(date2.date)) })
+  renderProducts( products.sort(function (date1,date2){ return(new Date(date1.date) > new Date(date2.date)) }))
 };
 //ASC the most recent product to the oldest product
 function Sort_date_ASC(products){
-  return products.sort(function (date1,date2){ return(new Date(date1.date) < new Date(date2.date)) })
+  renderProducts( products.sort(function (date1,date2){ return(new Date(date1.date) < new Date(date2.date)) }))
 };
 
 
