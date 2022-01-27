@@ -289,6 +289,7 @@ function LastReleased(products){
 
 //Render Page
 
+
 const render = (products, pagination) => {
   renderProducts(products);
   renderPagination(pagination);
@@ -309,9 +310,18 @@ const render = (products, pagination) => {
 // Feature 0 - Show more
 
 selectShow.addEventListener('change', event => {
-  fetchProducts(currentPagination.currentPage, parseInt(event.target.value))
+  if (event.target.value == "all"){
+
+    fetchProducts(currentPagination.currentPage,1000)
+    .then(setCurrentProducts)
+    .then(() => render(currentProducts, currentPagination.pageSize));
+  }
+  else{
+    fetchProducts(currentPagination.currentPage, parseInt(event.target.value))
     .then(setCurrentProducts)
     .then(() => render(currentProducts, currentPagination));
+  }
+
 });
 
 document.addEventListener('DOMContentLoaded', () =>
