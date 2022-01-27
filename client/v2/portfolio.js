@@ -23,6 +23,7 @@ const spanP50 = document.querySelector('#p50');
 const spanP90 = document.querySelector('#p90');
 const spanP95 = document.querySelector('#p95');
 
+const spanLastReleased=document.querySelector('#LastReleased');
 
 
 
@@ -120,6 +121,7 @@ const renderIndicators = (products,pagination) => {
   spanP90.innerHTML=p(0.90,products);
   spanP95.innerHTML=p(0.95,products);
 
+  spanLastReleased.innerHTML=LastReleased(products);
 };
 
 // List of Brands
@@ -275,7 +277,13 @@ function p(percentile,products){
   return products[parseInt(percentile*len_brands)].price
 };
 
+//Feature 11 - Last released date indicator
 
+
+function LastReleased(products){
+  let SortedReleasedProducts = products.sort(function (product1,product2){ return(product1.released <= product2.released)});
+  return (SortedReleasedProducts[0].released);
+}
 
 const render = (products, pagination) => {
   renderProducts(products);
