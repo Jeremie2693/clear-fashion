@@ -19,6 +19,10 @@ const selectsort = document.querySelector('#sort-select');
 const sectionProducts = document.querySelector('#products');
 const spanNbProducts = document.querySelector('#nbProducts');
 const spanNbRecentProducts = document.querySelector('#nbNewProducts');
+const spanP50 = document.querySelector('#p50');
+const spanP90 = document.querySelector('#p90');
+const spanP95 = document.querySelector('#p95');
+
 
 
 
@@ -107,8 +111,14 @@ const renderIndicators = (products,pagination) => {
   const {count} = pagination;
 
   spanNbProducts.innerHTML = count;
+  //Feature 9 - Number of recent products indicator
   spanNbRecentProducts.innerHTML = NBFilterRecentProduct(products);
+  
+  //Feature 10 - p50, p90 and p95 price value indicator
 
+  spanP50.innerHTML=p(0.50,products);
+  spanP90.innerHTML=p(0.90,products);
+  spanP95.innerHTML=p(0.95,products);
 
 };
 
@@ -241,6 +251,30 @@ function Sort_date_DESC(products){
 function Sort_date_ASC(products){
   renderProducts( products.sort(function (date1,date2){ return(new Date(date1.date) < new Date(date2.date)) }))
 };
+
+  //Feature 9 - Number of recent products indicator
+
+function NBFilterRecentProduct(products){
+  var new_product=[];
+  let currentTime = new Date();
+  let twoweekago = new Date(currentTime.setDate(currentTime.getDate()-14));
+  
+  for (let i = 0; i < products.length; i++){
+    if (new Date(products[i].released)>=twoweekago){
+      new_product.push(products[i])
+    }
+  
+  }
+  return(new_product.length);
+}
+
+//Feature 10 - p50, p90 and p95 price value indicator
+function p(percentile,products){
+  let sortpricemarket=products.sort(function (product1,product2){ return(product1.price >= product2.price)});
+  let len_brands=sortpricemarket.length;
+  return products[parseInt(percentile*len_brands)].price
+};
+
 
 
 const render = (products, pagination) => {

@@ -237,7 +237,7 @@ console.log(brands)
 
 
 function p90(market){
-  let sortpricemarket=market.sort(function (product1,product2){ return(product1.price <= product2.price)});
+  let sortpricemarket=market.sort(function (product1,product2){ return(product1.price >= product2.price)});
   let len_brands=sortpricemarket.length;
   return sortpricemarket[parseInt(0.9*len_brands)].price
 };
