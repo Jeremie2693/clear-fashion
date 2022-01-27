@@ -199,6 +199,7 @@ function FilterExpensiveprice(products)
 }
 
 //Feature 5 - Sort by price
+//Feature 6 - Sort by date
 
 //Desc
 function Sort_price_DESC(products){
@@ -283,32 +284,36 @@ selectBrands.addEventListener('change', event => {
 //Feature 3 - Filter by recent products
 
 
+//Feature 4 - Filter by reasonable price
 
+
+//Feature 5 - Sort by price
+//Feature 6 - Sort by date
 selectsort.addEventListener('change', event => {
   let evenenment=event.target.value
   switch (evenenment) {
     case 'price-asc':
       Sort_price_ASC(currentProducts)
-      //FilterReasonableprice(currentProducts)
       break;
     case 'price-desc':
       Sort_price_DESC(currentProducts)
-      //FilterExpensiveprice(currentProducts)
       break;
     case 'date-asc':
       Sort_date_ASC(currentProducts)
-      //FilterRecentProduct(currentProducts)
+
       break;
     case 'date-desc':
       Sort_date_DESC(currentProducts)
-      //FilterOldProduct(currentProducts)
       break;
-
   }
 });
 
 
 
+      //FilterReasonableprice(currentProducts)
+      //FilterExpensiveprice(currentProducts)
+      //FilterRecentProduct(currentProducts)
+      //FilterOldProduct(currentProducts)
 
 
 
