@@ -210,8 +210,15 @@ function Sort_price_ASC(products){
   renderProducts(products.sort(function (product1,product2){ return(product1.price >= product2.price) }))
 };
 
-
-
+//Feature 6 - Sort by date
+//DESC the oldest to the newest
+function Sort_date_DESC(products){
+  return products.sort(function (date1,date2){ return(new Date(date1.date) > new Date(date2.date)) })
+};
+//ASC the most recent product to the oldest product
+function Sort_date_ASC(products){
+  return products.sort(function (date1,date2){ return(new Date(date1.date) < new Date(date2.date)) })
+};
 
 
 const render = (products, pagination) => {
@@ -289,10 +296,12 @@ selectsort.addEventListener('change', event => {
       //FilterExpensiveprice(currentProducts)
       break;
     case 'date-asc':
-      FilterRecentProduct(currentProducts)
+      Sort_date_ASC(products)
+      //FilterRecentProduct(currentProducts)
       break;
     case 'date-desc':
-      FilterOldProduct(currentProducts)
+      Sort_date_DESC(products)
+      //FilterOldProduct(currentProducts)
       break;
 
   }
