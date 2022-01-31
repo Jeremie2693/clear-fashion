@@ -4,6 +4,9 @@
 // current products on the page
 let currentProducts = [];
 let currentPagination = {};
+let currentFavorite = [];
+let checkFavorite = 0;
+
 
 // inititiate selectors
 const selectShow = document.querySelector('#show-select');
@@ -12,6 +15,8 @@ const selectPage = document.querySelector('#page-select');
 
 const selectPrice = document.querySelector('#filter-price');
 const selectReleased = document.querySelector('#filter-released');
+const selectFavorite = document.querySelector('#filter-favorite');
+
 
 const selectBrands= document.querySelector('#brand-select');
 const selectsort = document.querySelector('#sort-select');
@@ -24,7 +29,6 @@ const spanP90 = document.querySelector('#p90');
 const spanP95 = document.querySelector('#p95');
 
 const spanLastReleased=document.querySelector('#LastReleased');
-
 
 
 
@@ -73,13 +77,28 @@ const renderProducts = products => {
   const div = document.createElement('div');
   const template = products
     .map(product => {
-      return `
-      <div class="product" id=${product.uuid}>
-        <span>${product.brand}</span>
-        <a href="${product.link}">${product.name}</a>
-        <span>${product.price} € </span>
-      </div>
-    `;
+      if(currentFavorite.includes(product)==true)
+      {
+  			return `
+      	<div class="product" id=${product.uuid}>
+            <input name="add_favorite_product" type="checkbox"  id='${product.name}' >
+        		<span>${product.brand}</span>
+        		<a href="${product.link}">${product.name}</a>
+        		<span>${product.price}</span>
+      	</div>
+      `;
+      }
+      else
+      {
+                return `
+        <div class="product" id=${product.uuid}>
+           <input name="add_favorite_product" type="checkbox"  id='${product.name}' >
+            <span>${product.brand}</span>
+            <a href="${product.link}">${product.name}</a>
+            <span>${product.price}</span>
+        </div>
+      `;
+      }
     })
     .join('');
 
@@ -286,6 +305,43 @@ function LastReleased(products){
   return (SortedReleasedProducts[0].released);
 }
 
+//Feature 12 - Save as favorite
+
+function addfavorite(product){
+  if(currentFavorite.includes(product) == false)
+  {
+    currentFavorite.push(product)
+  }
+  else if(currentFavorite.includes(product) == true)
+  {
+    for(var i = 0; i < currentFavorite.length; i++)
+    {
+      if(currentFavorite[i] == product)
+      {
+        currentFavorite.splice(i,1);
+      }
+    }
+  }
+}
+
+//Feature 4 - Filter by favorite
+
+function Favorite() {
+  if(checkFavorite == 0)
+  {
+    checkFavorite = 1;
+    renderProducts(currentFavorite);
+  }
+  else
+  {
+    checkFavorite = 0;
+    renderProducts(currentProducts);
+  }
+}
+
+
+
+
 
 //Render Page
 
@@ -312,7 +368,7 @@ const render = (products, pagination) => {
 selectShow.addEventListener('change', event => {
   if (event.target.value == "all"){
 
-    fetchProducts(currentPagination.currentPage,1000)
+    fetchProducts(currentPagination.currentPage,139)
     .then(setCurrentProducts)
     .then(() => render(currentProducts, currentPagination.pageSize));
   }
@@ -395,6 +451,9 @@ selectsort.addEventListener('change', event => {
   }
 });
 
+selectFavorite.addEventListener('click', event => {
+    Favorite()
+});
 
 
 
