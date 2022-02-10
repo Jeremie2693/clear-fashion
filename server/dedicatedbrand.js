@@ -1,6 +1,10 @@
 const fetch = require('node-fetch');
 const cheerio = require('cheerio');
 
+// Brand name
+let brand='';
+
+
 /**
  * Parse webpage e-shop
  * @param  {String} data - html response
@@ -11,6 +15,13 @@ const parse = data => {
   
     return $('.productList-container .productList')
       .map((i, element) => {
+        const link =$(element)
+          .find('a.productList-link')
+          .attr('href')
+
+        const brand =$(element)
+
+
         const name = $(element)
           .find('.productList-title')
           .text()
@@ -21,8 +32,18 @@ const parse = data => {
             .find('.productList-price')
             .text()
         );
-  
-        return {name, price};
+
+        const photo=$(element)
+          .find('.productList-image')
+          .text()
+        const uuid =$(element)
+          .find('.productList-')
+          .text()
+        const released=$(element)
+          .find('.productList-')
+          .text()
+        return {link,name, price};
+
       })
       .get();
   };
