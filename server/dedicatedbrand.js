@@ -16,7 +16,7 @@ const parse = data => {
           .text()
           .trim()
           .replace(/\s/g, ' ');
-        const price = parseInt(
+        const price = parseFloat(
           $(element)
             .find('.productList-price')
             .text()
