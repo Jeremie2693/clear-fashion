@@ -34,15 +34,16 @@ const parse = data => {
         );
 
         const photo=$(element)
-          .find('.productList-image')
-          .text()
+          .find('.productList-image img')
+          .attr('data-src')
+
         const uuid =$(element)
           .find('.productList-')
           .text()
         const released=$(element)
           .find('.productList-')
           .text()
-        return {link,name, price};
+        return {link,name, price,photo};
 
       })
       .get();
