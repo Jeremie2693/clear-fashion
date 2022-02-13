@@ -47,27 +47,6 @@ const parse = data => {
       .get();
   };
   
-
-const parseLinkspage = data => {
-  const $ = cheerio.load(data);
-
-  return $('.js-cmsModule')
-    .map((i, element) => {
-      var href= $(element)
-        .find('a')
-        .attr('href');
-      links="https://www.dedicatedbrand.com"+href;
-      return {links};
-    })
-    .get()
-};
-
-
-
-
-
-
-
   /**
    * Scrape all the products for a given url page
    * @param  {[type]}  url
@@ -92,21 +71,3 @@ const parseLinkspage = data => {
     }
   };
   
-  module.exports.scrapeLinks = async url => {
-    try {
-      const response = await fetch(url);
-
-      if (response.ok) {
-        const body = await response.text();
-        
-        return parseLinkspage(body);
-      }
-  
-      console.error(response);
-  
-      return null;
-    } catch (error) {
-      console.error(error);
-      return null;
-    }
-  };
