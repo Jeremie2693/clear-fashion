@@ -15,9 +15,14 @@ const parse = data => {
   
     return $('.productList-container .productList')
       .map((i, element) => {
+        //const link =`https://www.${brand}.com${ $(element)
+        //  .find('a.productList-link')
+        //  .attr('href')
+        //  }`
         const link =$(element)
-          .find('a.productList-link')
-          .attr('href')
+        .find('a.productList-link')
+        .attr('href')
+        
 
         const brand =$(element)
 
@@ -57,7 +62,7 @@ const parse = data => {
   module.exports.scrape = async url => {
     try {
       const response = await fetch(url);
-  
+
       if (response.ok) {
         const body = await response.text();
   
