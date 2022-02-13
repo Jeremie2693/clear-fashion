@@ -1,11 +1,13 @@
 /* eslint-disable no-console, no-process-exit */
-const dedicatedbrand = require('./dedicatedbrand');
+//const dedicatedbrand = require('./sources/dedicatedbrand');
+//const adresseParisbrand = require('./sources/AdresseParisbrand');
 
 async function sandbox (eshop = 'https://www.dedicatedbrand.com/en/men/news') {
   try {
     console.log(`🕵️‍♀️  browsing ${eshop} source`);
 
-    const products = await dedicatedbrand.scrape(eshop);
+    //const products = await dedicatedbrand.scrape(eshop);
+    const products = await adresseParisbrand.scrape(eshop);
 
     console.log(products);
     console.log('done');
