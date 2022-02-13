@@ -5,12 +5,13 @@ const montlimartbrand = require('./sources/Montlimartbrand');
 var fs = require('fs');
 
 
-async function sandbox_Dedicated (eshop = 'https://www.dedicatedbrand.com/en/men/news') {
+async function sandbox_Dedicated (eshop = 'https://www.dedicatedbrand.com/en/men') {
   try {
     console.log(`🕵️‍♀️  browsing ${eshop} source`);
 
     const products = await dedicatedbrand.scrape(eshop);
 
+    const products_Links = await dedicatedbrand.scrapeLinks(eshop);
 
     //console.log(products);
     //console.log('done');
