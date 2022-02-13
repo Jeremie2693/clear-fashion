@@ -1,8 +1,6 @@
 const fetch = require('node-fetch');
 const cheerio = require('cheerio');
 
-// Brand name
-let brand='';
 
 
 /**
@@ -15,13 +13,11 @@ const parse = data => {
   
     return $('.productList-container .productList')
       .map((i, element) => {
-        //const link =`https://www.${brand}.com${ $(element)
-        //  .find('a.productList-link')
-        //  .attr('href')
-        //  }`
-        const link =$(element)
-        .find('a.productList-link')
-        .attr('href')
+        const link =`https://www.dedicatedbrand.com${ $(element)
+          .find('a.productList-link')
+          .attr('href')
+          }`
+
         
 
         const brand =$(element)
@@ -65,7 +61,7 @@ const parse = data => {
 
       if (response.ok) {
         const body = await response.text();
-  
+        
         return parse(body);
       }
   
