@@ -2,7 +2,7 @@
 const dedicatedbrand = require('./sources/dedicatedbrand');
 const adresseParisbrand = require('./sources/AdresseParisbrand');
 const montlimartbrand = require('./sources/Montlimartbrand');
-
+var fs = require('fs');
 
 
 async function sandbox_Dedicated (eshop = 'https://www.dedicatedbrand.com/en/men/news') {
@@ -79,11 +79,20 @@ async function sandbox() {
   }
 
   console.log(products)
+  var jsonData = JSON.stringify(products);
 
-  return products;
+  fs.writeFile("products.js", jsonData, function(err) {
+    if (err) {
+       console.log(err);
+    }
+  });
+  return jsonData;
+
 
 }
 
 
 
+
 sandbox();
+
