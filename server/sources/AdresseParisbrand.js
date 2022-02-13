@@ -11,33 +11,32 @@ const cheerio = require('cheerio');
 const parse = data => {
     const $ = cheerio.load(data);
   
-    return $('.product-container .right-block')
+    return $('.product-container')
       .map((i, element) => {
-        const link =$(element)
-          .find('a.product_img_link')
-          .attr('href')
-          
 
+
+        const link =$(element)
+          .find('.product-name')
+          .attr('href')
         
 
         const brand ='adresse'
 
 
         const name = $(element)
-          .find('a.product-name')
-          .text()
-          .trim()
-          .replace(/\s/g, ' ');
+          .find('.product-name')
+          .attr('title')
+
 
         const price = parseFloat(
           $(element)
-            .find('a.price product-price')
+            .find('.content_price')
             .text()
         );
 
         const photo=$(element)
-          .find('a.product_img_link')
-          .attr('href')
+          .find('.product_img_link img')
+          .attr('data-original')
 
           
         const released=$(element)
