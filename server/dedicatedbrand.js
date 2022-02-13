@@ -20,7 +20,7 @@ const parse = data => {
 
         
 
-        const brand =$(element)
+        const brand ='dedicated'
 
 
         const name = $(element)
@@ -41,10 +41,11 @@ const parse = data => {
         const uuid =$(element)
           .find('.productList-')
           .text()
+          
         const released=$(element)
           .find('.productList-')
           .text()
-        return {link,name, price,photo};
+        return {link,brand,name, price,photo};
 
       })
       .get();
