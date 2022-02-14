@@ -1,5 +1,6 @@
 const fetch = require('node-fetch');
 const cheerio = require('cheerio');
+const {'v5': uuidv5} = require('uuid');
 
 
 
@@ -38,10 +39,15 @@ const parse = data => {
           .find('.productList-image img')
           .attr('data-src')
 
-        const released=$(element)
-          .find('.productList-')
-          .text()
-        return {link,brand,name, price,photo};
+          
+        const uuid=uuidv5(link, uuidv5.URL)
+
+
+        const date = new Date();
+        const released= date.toLocaleDateString()
+  
+
+        return {link,brand,name, price,photo,uuid,released};
 
       })
       .get();
