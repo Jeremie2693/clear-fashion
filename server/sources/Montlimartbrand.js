@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 const cheerio = require('cheerio');
-
+const {'v5': uuidv5} = require('uuid');
 
 
 /**
@@ -15,9 +15,9 @@ const parse = data => {
       .map((i, element) => {
 
 
-        const link =$(element)
+        const link =`${$(element)
           .find('.product-name a')
-          .attr('href')
+          .attr('href')}`
         
 
         const brand ='Montlimart'
@@ -35,14 +35,23 @@ const parse = data => {
         );
 
         const photo=$(element)
-          .find('.product-image img')
+          .find('img')
           .attr('src')
-
           
-        const released=$(element)
-          .find('.productList-')
-          .text()
-        return {link,brand,name, price,photo};
+        const uuid=uuidv5(link, uuidv5.URL)
+
+
+        const date = new Date();
+        const released= date.toLocaleDateString()
+  
+
+        return {"link":link,
+                "brand":brand,
+                "name":name,
+                "price": price,
+                "photo":photo,
+                "uuid":uuid,
+                "released":released};
 
       })
       .get();
