@@ -79,7 +79,7 @@ async function sandbox() {
   for (let j=0; j<productAddresse.length;j++){
     products.push(productAddresse[j])
   }
-
+  console.log('Scraping and insertion done')
   console.log(products)
   var jsonData = JSON.stringify(products);
 
@@ -88,15 +88,12 @@ async function sandbox() {
        console.log(err);
     }
   });
-  return jsonData;
+  return products;
 
 
 }
 
 
-
-
-//sandbox();
 
 const MONGODB_URI = 'mongodb+srv://jeremie:root@cluster0.ayat8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 const MONGODB_DB_NAME = 'clearfashion';
@@ -104,10 +101,15 @@ const MONGODB_DB_NAME = 'clearfashion';
 
 async function insert(products) {
 
-const client = await MongoClient.connect(MONGODB_URI, {'useNewUrlParser': true});
-const db =  client.db(MONGODB_DB_NAME)
+  const client = await MongoClient.connect(MONGODB_URI, {'useNewUrlParser': true});
+  const db =  client.db(MONGODB_DB_NAME)
+  
+  const collection = db.collection('products');
+  const result = collection.insertMany(products);
+  
+  }
 
-const collection = db.collection('products');
-const result = collection.insertMany(products);
+const products=sandbox();
 
-}
+insert(products);
+
