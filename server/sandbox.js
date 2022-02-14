@@ -6,6 +6,7 @@ var fs = require('fs');
 const {MongoClient} = require('mongodb');
 
 
+
 async function sandbox_Dedicated (eshop = 'https://www.dedicatedbrand.com/en/men') {
   try {
     console.log(`🕵️‍♀️  browsing ${eshop} source`);
@@ -80,8 +81,8 @@ async function sandbox() {
     products.push(productAddresse[j])
   }
   console.log('Scraping and insertion done')
-  console.log(products)
-  var jsonData = JSON.stringify(products);
+  //console.log(products)
+  var jsonData = JSON.stringify(products, null, 2);
 
   fs.writeFile("products.js", jsonData, function(err) {
     if (err) {
@@ -95,21 +96,6 @@ async function sandbox() {
 
 
 
-const MONGODB_URI = 'mongodb+srv://jeremie:root@cluster0.ayat8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
-const MONGODB_DB_NAME = 'clearfashion';
+sandbox();
 
-
-async function insert(products) {
-
-  const client = await MongoClient.connect(MONGODB_URI, {'useNewUrlParser': true});
-  const db =  client.db(MONGODB_DB_NAME)
-  
-  const collection = db.collection('products');
-  const result = collection.insertMany(products);
-  
-  }
-
-const products=sandbox();
-
-insert(products);
 
