@@ -3,6 +3,7 @@ const dedicatedbrand = require('./sources/dedicatedbrand');
 const adresseParisbrand = require('./sources/AdresseParisbrand');
 const montlimartbrand = require('./sources/Montlimartbrand');
 var fs = require('fs');
+const {MongoClient} = require('mongodb');
 
 
 async function sandbox_Dedicated (eshop = 'https://www.dedicatedbrand.com/en/men') {
@@ -95,5 +96,18 @@ async function sandbox() {
 
 
 
-sandbox();
+//sandbox();
 
+const MONGODB_URI = 'mongodb+srv://jeremie:root@cluster0.ayat8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+const MONGODB_DB_NAME = 'clearfashion';
+
+
+async function insert(products) {
+
+const client = await MongoClient.connect(MONGODB_URI, {'useNewUrlParser': true});
+const db =  client.db(MONGODB_DB_NAME)
+
+const collection = db.collection('products');
+const result = collection.insertMany(products);
+
+}
