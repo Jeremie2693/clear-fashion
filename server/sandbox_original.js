@@ -10,10 +10,10 @@ async function sandbox_Dedicated (eshop = 'https://www.dedicatedbrand.com/en/men
 
     const products = await dedicatedbrand.scrape(eshop);
 
-    const products_Links = await dedicatedbrand.scrapeLinks(eshop);
+    //const products_Links = await dedicatedbrand.scrapeLinks(eshop);
 
-
-    console.log(products_Links);
+    console.log(products)
+    //console.log(products_Links);
     console.log('done');
     process.exit(0);
 
@@ -65,5 +65,5 @@ async function sandbox_montlimart(eshop = 'https://www.montlimart.com/toute-la-c
 
 const [,, eshop] = process.argv;
 
-sandbox_Dedicated();
+sandbox_montlimart();
 
