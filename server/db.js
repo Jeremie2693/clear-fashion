@@ -4,7 +4,7 @@ const MONGODB_URI = 'mongodb+srv://jeremie:root@cluster0.ayat8.mongodb.net/myFir
 const MONGODB_DB_NAME = 'clearfashion';
 const sandbox = require('./sandbox.js');
 
-sandbox.sandbox();
+//sandbox.sandbox();
 const products = require('./products.json');
 
 async function insert(products) {
@@ -26,27 +26,28 @@ async function insert(products) {
   
     const collection = db.collection('products');
     
+    console.log(collection);
 
   
-    const b = 'adresse';
-    const sortbrand = collection.find({brand : b}).toArray();
-    console.log("Products by brand :");
-    console.log(sortbrand);
+    //const b = 'adresse';
+    //const sortbrand = collection.find({brand : b}).toArray();
+    //console.log("Products by brand :");
+    //console.log(sortbrand);
   
-    const prix = 100;
-    const cheaperPrice = collection.find({ price : { $lt : prix}}).toArray();
-    console.log(`Products costs lower than ${prix} € :`);
-    console.log(cheaperPrice);
+    //const prix = 100;
+    //const cheaperPrice = collection.find({ price : { $lt : prix}}).toArray();
+    //console.log(`Products costs lower than ${prix} € :`);
+    //console.log(cheaperPrice);
   
-    const sortedPrice = collection.find({$sort : { price : 1}}).toArray();
-    console.log("Products sorted by price :");
-    console.log(sortedPrice);
+    //const sortedPrice = collection.find({$sort : { price : 1}}).toArray();
+    //console.log("Products sorted by price :");
+    //console.log(sortedPrice);
   }
 
 
 
 
-insert(products);
+//insert(products);
 main()
 
 
