@@ -1,4 +1,5 @@
 const {MongoClient} = require('mongodb');
+const db =require('./db/index.js');
 
 const { calculateLimitAndOffset, paginate } = require('paginate-info');
 
