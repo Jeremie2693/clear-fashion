@@ -1,17 +1,16 @@
-const {MongoClient} = require('mongodb');
-//const db =require('./db/index.js');
-
-const { calculateLimitAndOffset, paginate } = require('paginate-info');
-
-
 const cors = require('cors');
 const express = require('express');
 const helmet = require('helmet');
 
-const ObjectId = require("mongodb").ObjectID;
+const {MongoClient} = require('mongodb');
+// const ObjectId = require("mongodb").ObjectID;
 
-const MONGODB_URI = 'mongodb+srv://jeremie:root@cluster0.ayat8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+const { calculateLimitAndOffset, paginate } = require('paginate-info');
+
+require('dotenv').config()
+const MONGODB_URI = "mongodb+srv://jeremie:root@cluster0.ayat8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 const MONGODB_DB_NAME = 'clearfashion';
+
 const PORT = 8092;
 
 const app = express();
@@ -24,80 +23,50 @@ app.use(helmet());
 
 app.options('*', cors());
 
-
-// connect to database
-
-async function main(){
-  console.log("Trying to connect.");
-
-  const client = await MongoClient.connect(MONGODB_URI, {'useNewUrlParser': true, 'useUnifiedTopology': true });
-  const db =  client.db(MONGODB_DB_NAME);
-  console.log('connected');
-
-  const collection = db.collection('products');
-
-  return collection
-
-
-
-}
-
-// Base endpoint
 app.get('/', (request, response) => {
   response.send({'ack': true});
 });
 
-// First endpoint
+app.listen(PORT);
 
-app.get("/products/:id", async (request, response) => {
-  var collection=await main();
-  collection.findOne({ "_id": new ObjectId(request.params.id) }, (error, result) => {
-      if(error) {
-          return response.status(500).send(error);
-      }
-      response.send(result);
-  });
-});
+async function fetch_collection()
+{
+  const client = await MongoClient.connect(MONGODB_URI, {'useNewUrlParser': true});
+  const db =  client.db(MONGODB_DB_NAME);
+  const collection = db.collection('products');
 
-// Second endpoint search
+  return await collection;
+}
 
-app.get("/products/search", async (request, response) => {
 
-  var collection= await main();
+
+
+
+app.get("/products/search/", async (request, response) => {
+  var collection = await fetch_collection();
 
   var filters = {};
-
   var limit = 12;
-  //if the limit is given 
-
+  var page = 1;
+  var sortby;
+  var sort = {name: 1} ;
+  var brand;
+  
   if ('limit' in request.query) 
   {
     limit = parseInt(request.query.limit);
   }
 
-  var size = 12;
-  //if the limit is given 
-
-  if ('size' in request.query) 
-  {
-    size = parseInt(request.query.limit);
-  }
-
-  var page = 1;
   if ('page' in request.query) 
   {
-    console.log('Reading page');
     page = parseInt(request.query.page);
-    console.log(page);
   }
 
-  var sortby;
   if ('sortby' in request.query) 
   {
     sortby = request.query.sortby;
   }
 
-  var sort = {name: 1} ;
   switch (sortby)
   {
     case 'priceasc':
@@ -106,20 +75,43 @@ app.get("/products/search", async (request, response) => {
     case 'pricedesc':
       sort = {price: -1};
       break;
+    case 'dateasc':
+      sort = {date: 1};
+      break;
+    case 'datedesc':
+      sort = {date: -1};
+      break;
   }
 
-  var brand;
   if ('brand' in request.query)
   {
     brand = request.query.brand;
     filters['brand'] = brand;
   }
   
-  var price;
-  if ('price' in request.query)
+  var minprice;
+  if ('minprice' in request.query)
   {
-    price = parseInt(request.query.price);
-    filters['price'] = { $lt: price };
+    minprice = parseInt(request.query.minprice);
+  }
+
+  var maxprice;
+  if ('maxprice' in request.query)
+  {
+    maxprice = parseInt(request.query.maxprice);
+  }
+
+  if (minprice != null || maxprice != null)
+  {
+    filters['price'] = {};
+    if (minprice != null)
+    {
+      filters['price']['$gt'] = minprice;
+    }
+    if (maxprice != null)
+    {
+      filters['price']['$lt'] = maxprice;
+    }
   }
   
   console.log(filters);
@@ -144,15 +136,38 @@ app.get("/products/search", async (request, response) => {
 });
 
 
-//third endpoint
-app.get('/products/brands', async(request, response) => {
-  let brands = await collection.aggregate([{$group : { _id : "$brand" }}]).toArray();
-  brands = brands.map((brand) => brand._id);
-  response.send({brands});
-})
 
-app.listen(PORT);
+app.get("/products/:id", async (request, response) => {
+  console.log('In products id route ...');
+  var collection = await get_collection();
+  collection.findOne({ "_id": request.params.id }, (error, result) => {
+      if(error) {
+          return response.status(500).send(error);
+      }
+      response.send(result);
+  });
+});
+
+app.get("/brands/", async (request, response) => {
+  console.log('In brands route ...');
+  var collection = await get_collection();
+  try
+  {
+    const brands = await collection.distinct("brand");
+    console.log(brands);
+    var result = new Array();
+    brands.forEach(brand =>
+    {
+      result.push(brand);
+    });
+    console.log(result);
+    response.send(result);
+  }
+  catch (error) 
+  {
+    console.log('In error for brands');
+    response.status(500).send(error);
+  }
+});
 
 console.log(`📡 Running on port ${PORT}`);
-console.log("Connected to " + MONGODB_DB_NAME );
-
