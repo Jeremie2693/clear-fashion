@@ -53,9 +53,11 @@ const fetchProducts = async (page = 1, size = 12) => {
   try {
     const response = await fetch(
       //old api
-      `https://clear-fashion-api.vercel.app?page=${page}&size=${size}`
+      //`https://clear-fashion-api.vercel.app?page=${page}&size=${size}`
       //
-      //`https://server-sigma-ashen.vercel.app?page=${page}&size=${size}`
+      `https://server-sigma-ashen.vercel.app//products/search?page=${page}&size=${size}`,
+      //{ headers: {origin: null} }
+      
     );
     const body = await response.json();
     
