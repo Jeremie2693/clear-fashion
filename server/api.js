@@ -7,7 +7,7 @@ const {MongoClient} = require('mongodb');
 
 const { calculateLimitAndOffset, paginate } = require('paginate-info');
 
-require('dotenv').config()
+//require('dotenv').config()
 const MONGODB_URI = "mongodb+srv://jeremie:root@cluster0.ayat8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 const MONGODB_DB_NAME = 'clearfashion';
 
@@ -149,8 +149,8 @@ app.get("/products/:id", async (request, response) => {
 });
 
 app.get("/brands/", async (request, response) => {
-  console.log('In brands route ...');
-  var collection = await get_collection();
+
+  var collection = await fetch_collection();
   try
   {
     const brands = await collection.distinct("brand");
