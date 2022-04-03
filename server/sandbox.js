@@ -8,7 +8,7 @@ const {MongoClient} = require('mongodb');
 
 
 
-async function sandbox_Dedicated(eshop = 'https://www.dedicatedbrand.com/en/men/all-men') {
+async function sandbox_Dedicated(eshop = 'https://www.dedicatedbrand.com/en/men/all-men?limit=all') {
   try {
     console.log(`🕵️‍♀️  browsing ${eshop} source`);
 
@@ -45,7 +45,7 @@ async function sandbox_addresse(eshop = 'https://adresse.paris/630-toute-la-coll
   }
 }
 
-async function sandbox_montlimart(eshop = 'https://www.montlimart.com/toute-la-collection.html') {
+async function sandbox_montlimart(eshop = 'https://www.montlimart.com/toute-la-collection.html?limit=all') {
   try {
     console.log(`🕵️‍♀️  browsing ${eshop} source`);
 
@@ -87,29 +87,37 @@ async function sandbox() {
   const products = [];
   productDedicated = await sandbox_Dedicated(eshop);
   for (let j=0; j<productDedicated.length;j++){
-    products.push(productDedicated[j])
+    if (productDedicated[j].price !=null){
+      products.push(productDedicated[j])
+    }
   }
 
   productMontlimart = await sandbox_montlimart(eshop);
   for (let j=0; j<productMontlimart.length;j++){
-    products.push(productMontlimart[j])
+    if (productMontlimart[j].price !=null){
+      products.push(productMontlimart[j])
+    }
   }
 
   productAddresse = await sandbox_addresse(eshop);
   for (let j=0; j<productAddresse.length;j++){
-    products.push(productAddresse[j])
+    if (productAddresse[j].price  !=null){
+      products.push(productAddresse[j])
+    }
   }
 
   productLoom = await sandbox_loom(eshop);
   for (let j=0; j<productLoom.length;j++){
-    products.push(productLoom[j])
+    if (productLoom[j].price  !=null){
+      products.push(productLoom[j])
+    }
   }
 
-  console.log('Scraping and insertion done')
+  console.log('Scraping and insertion done in products.json')
   //console.log(products)
   var jsonData = JSON.stringify(products, null, 2);
 
-  fs.writeFile("products.js", jsonData, function(err) {
+  fs.writeFile("products.json", jsonData, function(err) {
     if (err) {
        console.log(err);
     }
@@ -121,6 +129,6 @@ async function sandbox() {
 module.exports.sandbox=sandbox();
 
 
-sandbox();
+//sandbox();
 
 

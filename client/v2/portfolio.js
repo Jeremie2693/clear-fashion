@@ -53,9 +53,9 @@ const fetchProducts = async (page = 1, size = 12) => {
   try {
     const response = await fetch(
       //old api
-      //`https://clear-fashion-api.vercel.app?page=${page}&size=${size}`
+      `https://clear-fashion-api.vercel.app?page=${page}&size=${size}`
       //
-      `https://server-theta-teal.vercel.app/products/search?page=${page}&size=${size}`,
+      //`https://server-theta-teal.vercel.app/products/search?page=${page}&size=${size}`,
       //{ headers: {origin: null} }
       
     );
@@ -459,6 +459,7 @@ selectsort.addEventListener('change', event => {
 selectFavorite.addEventListener('click', event => {
     Favorite()
 });
+
 
 
 
