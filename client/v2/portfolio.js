@@ -4,8 +4,7 @@
 // current products on the page
 let currentProducts = [];
 let currentPagination = {};
-let currentFavorite = [];
-let checkFavorite = 0;
+
 
 
 // inititiate selectors
@@ -53,9 +52,9 @@ const fetchProducts = async (page = 1, size = 12) => {
   try {
     const response = await fetch(
       //old api
-      `https://clear-fashion-api.vercel.app?page=${page}&size=${size}`
+      //`https://clear-fashion-api.vercel.app?page=${page}&size=${size}`
       //
-      //`https://server-theta-teal.vercel.app/products/search?page=${page}&size=${size}`,
+      `https://server-theta-teal.vercel.app/products/search?page=${page}&size=${size}`,
       //{ headers: {origin: null} }
       
     );
@@ -82,28 +81,15 @@ const renderProducts = products => {
   const div = document.createElement('div');
   const template = products
     .map(product => {
-      if(currentFavorite.includes(product)==true)
-      {
   			return `
       	<div class="product" id=${product.uuid}>
-            <input name="add_favorite_product" type="checkbox"  id='${product.name}' >
+            <button type="button" onclick="addToFavorites()" data=${product.uuid}>⭐</button>
         		<span>${product.brand}</span>
         		<a href="${product.link}">${product.name}</a>
-        		<span>${product.price}</span>
+        		<span>${product.price} €</span>
       	</div>
       `;
-      }
-      else
-      {
-                return `
-        <div class="product" id=${product.uuid}>
-           <input name="add_favorite_product" type="checkbox"  id='${product.name}' >
-            <span>${product.brand}</span>
-            <a href="${product.link}">${product.name}</a>
-            <span>${product.price}</span>
-        </div>
-      `;
-      }
+      
     })
     .join('');
 
@@ -312,36 +298,33 @@ function LastReleased(products){
 
 //Feature 12 - Save as favorite
 
-function addfavorite(product){
-  if(currentFavorite.includes(product) == false)
+async function addToFavorites() {
+  let arg1 = target.getAttribute('data');
+  const products = await fetchProducts(currentPagination.currentPage, currentPagination.pageSize);
+  let fav= products.result.find(x=>x.uuid==arg1)
+  let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+  console.log(favorites.length)
+  let prod=favorites.find(object => object.uuid == arg1);
+  if(prod== undefined)
   {
-    currentFavorite.push(product)
+    favorites.push(fav);
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+    window.alert("Added to your favorites")
   }
-  else if(currentFavorite.includes(product) == true)
-  {
-    for(var i = 0; i < currentFavorite.length; i++)
-    {
-      if(currentFavorite[i] == product)
-      {
-        currentFavorite.splice(i,1);
-      }
-    }
+  else{
+    window.alert("This Product is already in your favorites")
   }
+
 }
 
 //Feature 4 - Filter by favorite
 
-function Favorite() {
-  if(checkFavorite == 0)
-  {
-    checkFavorite = 1;
-    renderProducts(currentFavorite);
-  }
-  else
-  {
-    checkFavorite = 0;
-    renderProducts(currentProducts);
-  }
+async function renderFavorite(){
+  const products=await fetchProducts(currentPagination.currentPage, currentPagination.pageSize)
+  const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+  products.result = favorites;
+  setCurrentProducts(products);
+  render(currentProducts, currentPagination);
 }
 
 
@@ -457,8 +440,9 @@ selectsort.addEventListener('change', event => {
 });
 
 selectFavorite.addEventListener('click', event => {
-    Favorite()
+    renderFavorite()
 });
+
 
 
 
