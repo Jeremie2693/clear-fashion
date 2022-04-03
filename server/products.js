@@ -361,7 +361,7 @@
   },
   {
     "link": "https://www.montlimart.com/sweat-mi-temps-vert-eau.html",
-    "brand": "Montlimart",
+    "brand": "montlimart",
     "name": "SWEAT MI-TEMPS VERT EAU",
     "price": 90,
     "photo": "https://www.montlimart.com/media/catalog/product/cache/1/small_image/508, 720x/17f82f742ffe127f42dca9de82fb58b1/2/2/22pe-sweat-homme-mi-temps-vert-eau-fonc_-recycl_-1.jpg",
@@ -370,7 +370,7 @@
   },
   {
     "link": "https://www.montlimart.com/espadrilles-espagreen-kaki.html",
-    "brand": "Montlimart",
+    "brand": "montlimart",
     "name": "ESPADRILLES ESPAGREEN KAKI",
     "price": 65,
     "photo": "https://www.montlimart.com/media/catalog/product/cache/1/small_image/508, 720x/17f82f742ffe127f42dca9de82fb58b1/2/2/22pe-espadrilles-homme-espagreen-kaki-recycl_-1.jpg",
@@ -379,7 +379,7 @@
   },
   {
     "link": "https://www.montlimart.com/chemise-centre-lin-vert-olive-rayures.html",
-    "brand": "Montlimart",
+    "brand": "montlimart",
     "name": "CHEMISE CENTRE-LIN VERT OLIVE RAYURES",
     "price": 100,
     "photo": "https://www.montlimart.com/media/catalog/product/cache/1/small_image/508, 720x/17f82f742ffe127f42dca9de82fb58b1/2/1/21pe-chemise-homme-centre-lin-olive-rayures-lin-col-boutonn_-1.jpg",
@@ -388,7 +388,7 @@
   },
   {
     "link": "https://www.montlimart.com/t-shirt-agrume-blanc.html",
-    "brand": "Montlimart",
+    "brand": "montlimart",
     "name": "T-SHIRT AGRUME BLANC",
     "price": 50,
     "photo": "https://www.montlimart.com/media/catalog/product/cache/1/small_image/508, 720x/17f82f742ffe127f42dca9de82fb58b1/2/2/22pe-t-shirt-homme-agrume-blanc-coton-bio-2.jpg",
@@ -397,7 +397,7 @@
   },
   {
     "link": "https://www.montlimart.com/pull-damier-camel.html",
-    "brand": "Montlimart",
+    "brand": "montlimart",
     "name": "PULL DAMIER CAMEL",
     "price": 135,
     "photo": "https://www.montlimart.com/media/catalog/product/cache/1/small_image/508, 720x/17f82f742ffe127f42dca9de82fb58b1/2/2/22pe-pull-homme-damier-camel-coton-bio-made-in-france-3.jpg",
@@ -406,7 +406,7 @@
   },
   {
     "link": "https://www.montlimart.com/chemise-maolin-terracotta.html",
-    "brand": "Montlimart",
+    "brand": "montlimart",
     "name": "CHEMISE MAOLIN TERRACOTTA",
     "price": 95,
     "photo": "https://www.montlimart.com/media/catalog/product/cache/1/small_image/508, 720x/17f82f742ffe127f42dca9de82fb58b1/2/2/22pe-chemise-homme-maolin-terracotta-coton-bio-lin-1.jpg",
@@ -415,7 +415,7 @@
   },
   {
     "link": "https://www.montlimart.com/t-shirt-agrume-marine.html",
-    "brand": "Montlimart",
+    "brand": "montlimart",
     "name": "T-SHIRT AGRUME MARINE",
     "price": 50,
     "photo": "https://www.montlimart.com/media/catalog/product/cache/1/small_image/508, 720x/17f82f742ffe127f42dca9de82fb58b1/2/2/22pe-t-shirt-homme-agrume-marine-coton-bio-1.jpg",
@@ -424,7 +424,7 @@
   },
   {
     "link": "https://www.montlimart.com/baskets-impact-marine.html",
-    "brand": "Montlimart",
+    "brand": "montlimart",
     "name": "BASKETS IMPACT MARINE",
     "price": 149,
     "photo": "https://www.montlimart.com/media/catalog/product/cache/1/small_image/508, 720x/17f82f742ffe127f42dca9de82fb58b1/2/1/21ah-sneakers-homme-impact-marine-made-in-france-1.jpg",
@@ -433,7 +433,7 @@
   },
   {
     "link": "https://www.montlimart.com/chemise-centre-lin-bleu-marine.html",
-    "brand": "Montlimart",
+    "brand": "montlimart",
     "name": "CHEMISE CENTRE-LIN BLEU MARINE",
     "price": 100,
     "photo": "https://www.montlimart.com/media/catalog/product/cache/1/small_image/508, 720x/17f82f742ffe127f42dca9de82fb58b1/2/2/22pe-chemise-homme-centre-lin-bleu-marine-coton-bio-lin-1.jpg",
@@ -442,7 +442,7 @@
   },
   {
     "link": "https://www.montlimart.com/sweat-climat-argile.html",
-    "brand": "Montlimart",
+    "brand": "montlimart",
     "name": "SWEAT CLIMAT ARGILE",
     "price": 90,
     "photo": "https://www.montlimart.com/media/catalog/product/cache/1/small_image/508, 720x/17f82f742ffe127f42dca9de82fb58b1/2/2/22pe-sweat-homme-climat-argile-coton-bio-1.jpg",
@@ -451,14 +451,14 @@
   },
   {
     "link": "undefined",
-    "brand": "Montlimart",
+    "brand": "montlimart",
     "price": null,
     "uuid": "6e789c0a-7055-5ec6-b18e-e2285ddabdb5",
     "released": "03/04/2022"
   },
   {
     "link": "https://www.montlimart.com/chemise-centre-lin-terracotta.html",
-    "brand": "Montlimart",
+    "brand": "montlimart",
     "name": "CHEMISE CENTRE-LIN TERRACOTTA",
     "price": 100,
     "photo": "https://www.montlimart.com/media/catalog/product/cache/1/small_image/508, 720x/17f82f742ffe127f42dca9de82fb58b1/2/2/22pe-chemise-homme-centre-lin-terracotta-coton-bio-lin-1.jpg",
@@ -467,7 +467,7 @@
   },
   {
     "link": "https://www.montlimart.com/polo-club-marine.html",
-    "brand": "Montlimart",
+    "brand": "montlimart",
     "name": "POLO CLUB MARINE",
     "price": 75,
     "photo": "https://www.montlimart.com/media/catalog/product/cache/1/small_image/508, 720x/17f82f742ffe127f42dca9de82fb58b1/2/2/22pe-polo-homme-club-marine-coton-bio-recycl_-1.jpg",
@@ -476,7 +476,7 @@
   },
   {
     "link": "https://www.montlimart.com/t-shirt-prometteur-beige.html",
-    "brand": "Montlimart",
+    "brand": "montlimart",
     "name": "T-SHIRT PROMETTEUR BEIGE",
     "price": 60,
     "photo": "https://www.montlimart.com/media/catalog/product/cache/1/small_image/508, 720x/17f82f742ffe127f42dca9de82fb58b1/2/2/22pe-t-shirt-homme-prometteur-beige-coton-bio-chanvre-4.jpg",
@@ -485,7 +485,7 @@
   },
   {
     "link": "https://www.montlimart.com/espadrilles-espagreen-bleu.html",
-    "brand": "Montlimart",
+    "brand": "montlimart",
     "name": "ESPADRILLES ESPAGREEN BLEU",
     "price": 65,
     "photo": "https://www.montlimart.com/media/catalog/product/cache/1/small_image/508, 720x/17f82f742ffe127f42dca9de82fb58b1/2/2/22pe-espadrilles-homme-espagreen-bleu-recycl_-1.jpg",
@@ -494,7 +494,7 @@
   },
   {
     "link": "https://www.montlimart.com/t-shirt-essaim-tabac.html",
-    "brand": "Montlimart",
+    "brand": "montlimart",
     "name": "T-SHIRT ESSAIM TABAC",
     "price": 45,
     "photo": "https://www.montlimart.com/media/catalog/product/cache/1/small_image/508, 720x/17f82f742ffe127f42dca9de82fb58b1/2/2/22pe-t-shirt-homme-essaim-tabac-coton-bio-1.jpg",
