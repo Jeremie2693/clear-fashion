@@ -20,7 +20,7 @@ const parse = data => {
           .attr('href')}`
         
 
-        const brand ='Montlimart'
+        const brand ='montlimart'
 
 
         const name = $(element)

@@ -2,18 +2,19 @@
 const dedicatedbrand = require('./sources/dedicatedbrand');
 const adresseParisbrand = require('./sources/AdresseParisbrand');
 const montlimartbrand = require('./sources/Montlimartbrand');
+const loombrand=require('./sources/loom');
 var fs = require('fs');
 const {MongoClient} = require('mongodb');
 
 
 
-async function sandbox_Dedicated (eshop = 'https://www.dedicatedbrand.com/en/men') {
+async function sandbox_Dedicated(eshop = 'https://www.dedicatedbrand.com/en/men/all-men') {
   try {
     console.log(`🕵️‍♀️  browsing ${eshop} source`);
 
     const products = await dedicatedbrand.scrape(eshop);
 
-    const products_Links = await dedicatedbrand.scrapeLinks(eshop);
+    //const products_Links = await dedicatedbrand.scrapeLinks(eshop);
 
     //console.log(products);
     //console.log('done');
@@ -62,6 +63,23 @@ async function sandbox_montlimart(eshop = 'https://www.montlimart.com/toute-la-c
   }
 }
 
+async function sandbox_loom(eshop = 'https://www.loom.fr/collections/tous-les-vetements') {
+  try {
+    console.log(`🕵️‍♀️  browsing ${eshop} source`);
+
+    const products = await loombrand.scrape(eshop);
+
+    //console.log(products);
+    //console.log('done');
+    //process.exit(0);
+    return products
+
+  } catch (e) {
+    console.error(e);
+    process.exit(1);
+  }
+}
+
 
 async function sandbox() {
   const [,, eshop] = process.argv;
@@ -71,15 +89,22 @@ async function sandbox() {
   for (let j=0; j<productDedicated.length;j++){
     products.push(productDedicated[j])
   }
-  productMontlimart = await sandbox_montlimart(eshop);
 
+  productMontlimart = await sandbox_montlimart(eshop);
   for (let j=0; j<productMontlimart.length;j++){
     products.push(productMontlimart[j])
   }
+
   productAddresse = await sandbox_addresse(eshop);
   for (let j=0; j<productAddresse.length;j++){
     products.push(productAddresse[j])
   }
+
+  productLoom = await sandbox_loom(eshop);
+  for (let j=0; j<productLoom.length;j++){
+    products.push(productLoom[j])
+  }
+
   console.log('Scraping and insertion done')
   //console.log(products)
   var jsonData = JSON.stringify(products, null, 2);

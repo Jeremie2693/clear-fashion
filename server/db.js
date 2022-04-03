@@ -47,7 +47,7 @@ async function insert(products) {
 
 
 
-//insert(products);
-main()
+insert(products);
+//main()
 
 

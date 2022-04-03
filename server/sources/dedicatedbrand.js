@@ -42,9 +42,9 @@ const parse = data => {
           
         const uuid=uuidv5(link, uuidv5.URL)
 
-
         const date = new Date();
         const released= date.toLocaleDateString()
+
   
 
         return {link,brand,name, price,photo,uuid,released};
@@ -57,10 +57,9 @@ const parse = data => {
 const parseLinkspage = data => {
   const $ = cheerio.load(data);
 
-  return $('.js-cmsModule')
+  return $('a')
     .map((i, element) => {
       var href= $(element)
-        .find('a')
         .attr('href');
       links="https://www.dedicatedbrand.com"+href;
       return {links};
@@ -98,6 +97,7 @@ const parseLinkspage = data => {
     }
   };
   
+  // scrape the links of all the page of the header
   module.exports.scrapeLinks = async url => {
     try {
       const response = await fetch(url);
